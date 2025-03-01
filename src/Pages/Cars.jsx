@@ -124,6 +124,7 @@ export default function Cars() {
         </div>
 
         {/* Popup Modal */}
+        
         {selectedCar && (
             <div className="fixed inset-0 bg-black/60 flex justify-center items-center px-4">
                 <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">

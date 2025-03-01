@@ -34,18 +34,20 @@ const Navbar = () => {
       showLoginOptions ? "max-h-40" : "max-h-0"
     }`}
   >
-    <a
-      href="/admin-login"
-      className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-    >
-        <User className="w-5 h-5 text-indigo-600" /> User Login
-    </a>
+    
     <a
       href="/citizen-login"
       className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
     >
-      <Shield className="w-5 h-5 text-indigo-600" /> Admin Login
+        <User className="w-5 h-5 text-indigo-600" /> Citizen Login
       
+      
+    </a>
+    <a
+      href="/admin-login"
+      className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
+    >
+      <Shield className="w-5 h-5 text-indigo-600" /> Admin Login
     </a>
   </div>
 </div>
