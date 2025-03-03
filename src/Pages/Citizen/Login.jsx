@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { API } from '../Apis/api'; // Import API from apis.js
+import { API } from '../../Apis/api'; // Import API from apis.js
+import CarLoader from '../../Components/Loader';
 
 // toast.configure();
 
@@ -41,6 +42,7 @@ const CitizenLogin = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 flex justify-center items-center px-4">
+    {loading? <CarLoader/>:(
       <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         {/* Left Image Section */}
         <div className="hidden md:block">
@@ -85,7 +87,7 @@ const CitizenLogin = () => {
               className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center"
               disabled={loading}
             >
-              {loading ? 'Logging in...' : 'Login'}
+              Login
             </button>
           </form>
 
@@ -94,6 +96,7 @@ const CitizenLogin = () => {
           </p>
         </div>
       </div>
+    )}
     </div>
   );
 };

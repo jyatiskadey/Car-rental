@@ -11,7 +11,7 @@ function Home() {
             <HeroSection />
             <SearchBar />
             <FeaturedProperties />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

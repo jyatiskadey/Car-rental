@@ -9,13 +9,22 @@ const Navbar = () => {
       <h1 className="text-3xl font-bold text-indigo-700">EliteDrive</h1>
       
       <div className="flex items-center space-x-6">
-        <a href="/" className="hover:text-indigo-600 font-medium">Home</a>
+        {/* <a href="/" className="hover:text-indigo-600 font-medium">Home</a>
+         */}
+         <a
+    href={localStorage.getItem('token') ? '/citizen/dashboard' : '/'}
+    className="hover:text-indigo-600 font-medium"
+>
+    Home
+</a>
+
         <a href="/elitedrive/cars" className="hover:text-indigo-600 font-medium">Our Cars</a>
         <a href="/contact" className="hover:text-indigo-600 font-medium">Contact</a>
 
         {/* Login Dropdown */}
         
 <div className="relative">
+{!localStorage.getItem('token') && (
   <button
     onClick={() => setShowLoginOptions(!showLoginOptions)}
     className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition"
@@ -27,6 +36,8 @@ const Navbar = () => {
       }`}
     />
   </button>
+)}
+
 
   {/* Dropdown Items */}
   <div
