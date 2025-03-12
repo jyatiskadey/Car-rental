@@ -27,8 +27,15 @@ const CitizenDashboard = () => {
             const data = response.data.citizen;
             setCitizen(data);
     
+            // Store user details in localStorage
+         
+            localStorage.setItem('citizenDetails', JSON.stringify({
+                name: data.name, 
+                email: data.email, 
+                mmobileNo: data.phone
+            }));
+    
             // Dummy or mock data for booked cars and pending payments
-            // Ideally, these should come from your backend API.
             setBookedCars(2);   // Replace with actual response field if available
             setPendingPayments(1);
             setNotifications([
@@ -37,9 +44,9 @@ const CitizenDashboard = () => {
             ]);
     
             // Enforce minimum 2 seconds loader time
-            setTimeout(() => {
-                setLoading(false);   // Assuming you have 'loading' state in parent component
-            }, 2000);
+            // setTimeout(() => {
+            //     setLoading(false);   // Assuming you have 'loading' state in parent component
+            // }, 2000);
     
         } catch (error) {
             console.error('Error fetching citizen profile:', error);
@@ -48,6 +55,7 @@ const CitizenDashboard = () => {
             handleLogout();
         }
     };
+    
     
     // Add this helper function to handle logout (reuse where needed)
    
@@ -70,7 +78,7 @@ const CitizenDashboard = () => {
       }).then((result) => {
           if (result.isConfirmed) {
               localStorage.removeItem('token');
-              localStorage.removeItem('role');
+              localStorage.removeItem('citizenDetails');
               Swal.fire(
                   'Logged Out!',
                   'You have been successfully logged out.',
@@ -89,7 +97,7 @@ const CitizenDashboard = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-                <h1 className="text-2xl font-bold text-gray-800">🚗 EliteDrive Dashboard</h1>
+                <h1 className="text-2xl font-bold text-gray-800"><img src="/images/logo.png" className='h-10 w-20' alt="" /> </h1>
                 <button
         onClick={handleLogout}
         className="flex items-center gap-2 text-sm bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"

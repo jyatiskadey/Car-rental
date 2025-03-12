@@ -12,13 +12,25 @@ export default function Cars() {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(false);
     const [popupType, setPopupType] = useState('');
-    const [name, setName] = useState('');
+    const [name, setName] = React.useState("");
+
 const [date, setDate] = useState('');
 const [pickupLocation, setPickupLocation] = useState('');
 const [dropLocation, setDropLocation] = useState('');
 
 // This will be available when the popup opens for booking a car
 const [selectedCar, setSelectedCar] = useState(null);
+
+React.useEffect(() => {
+    const storedCitizen = localStorage.getItem("citizenDetails");
+    
+    if (storedCitizen) {
+        const citizenData = JSON.parse(storedCitizen);
+        setName(citizenData.name);  // Extract name from stored object
+    }
+}, []);
+
+
 
     useEffect(() => {
         const fetchCars = async () => {
@@ -141,13 +153,14 @@ const [selectedCar, setSelectedCar] = useState(null);
                             </div>
                         )}
 
-                        {popupType === "book" && (
-                            <div>
-                                <h2 className="text-3xl font-bold text-gray-800 mb-4">Book This Car</h2>
-                                <p className="text-gray-600 mb-2"><strong>Car:</strong> {selectedCar.name}</p>
-                                <p className="text-gray-600 mb-4"><strong>Price:</strong> {selectedCar.price}</p>
+{popupType === "book" && (
+    <div className=''>
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">Book This Car</h2>
+        <p className="text-gray-600 mb-2"><strong>Car:</strong> {selectedCar.name}</p>
+        <p className="text-gray-600 mb-4"><strong>Price:</strong> {selectedCar.price}</p>
 
-                                <form onSubmit={handleSubmit} className="space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3">
+            <label htmlFor="">name:</label>
             <input
                 type="text"
                 value={name}
@@ -155,8 +168,9 @@ const [selectedCar, setSelectedCar] = useState(null);
                 placeholder="Your Name"
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
                 required
+                readOnly // Make it non-editable (optional)
             />
-
+<label htmlFor="">Pick Up Date:</label>
             <input
                 type="date"
                 value={date}
@@ -198,9 +212,9 @@ const [selectedCar, setSelectedCar] = useState(null);
                 Confirm Booking
             </button>
         </form>
+    </div>
+)}
 
-                            </div>
-                        )}
                     </div>
                 </div>
             )}
