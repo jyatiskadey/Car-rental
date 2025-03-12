@@ -48,7 +48,7 @@ const CarForm = ({ addCar }) => {
         formData.append('image', car.imageFile);
 
         try {
-            const token = localStorage.getItem('token'); // Assuming admin is logged in and token is available
+            const token = localStorage.getItem('token');
 
             const response = await axios.post(API.ADD_CAR, formData, {
                 headers: {

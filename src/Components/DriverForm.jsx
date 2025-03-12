@@ -100,6 +100,9 @@ setLoading(false);
                     📧 <span className="font-medium">{driver.email}</span>
                 </p>
                 <p className="text-gray-600 text-sm flex items-center gap-2">
+                    🪪 <span className="font-medium">{driver.driverId}</span>
+                </p>
+                <p className="text-gray-600 text-sm flex items-center gap-2">
                     📱 <span className="font-medium">{driver.phone}</span>
                 </p>
 

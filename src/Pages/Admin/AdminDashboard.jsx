@@ -7,7 +7,7 @@ import CarList from '../../Components/CarList';
 import { FaSignOutAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import Drivers from '../../Components/DriverForm';
-
+import Citizen from '../Citizen';
 // Dummy chart data (for bookings chart)
 const bookingChartData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -73,7 +73,7 @@ const AdminDashboard = ({ cars = [], addCar }) => {
                     <SidebarLink icon={BarChart} label="Dashboard" section="dashboard" />
                     <SidebarLink icon={Car} label="Manage Cars" section="manage-cars" />
                     <SidebarLink icon={CircleDollarSign} label="Bookings" section="bookings" />
-                    <SidebarLink icon={Users} label="Users" section="users" />
+                    {/* <SidebarLink icon={Users} label="Users" section="users" /> */}
                     <SidebarLink icon={Settings} label="Settings" section="settings" />
                     <SidebarLink icon={User} label="Drivers" section="Drivers" />
                     <button
@@ -97,7 +97,7 @@ const AdminDashboard = ({ cars = [], addCar }) => {
                             className="border border-gray-300 rounded-lg px-3 py-1"
                         />
                         <img
-                            src="https://via.placeholder.com/40"
+                            src="/images/logo.png"
                             alt="Admin"
                             className="w-10 h-10 rounded-full"
                         />
@@ -156,18 +156,17 @@ const AdminDashboard = ({ cars = [], addCar }) => {
                         </div>
                     )}
 
-                    {/* Other Sections (Bookings, Users, Settings, Logout) */}
                     {activeSection === 'bookings' && (
                         <div className="bg-white p-6 rounded-lg shadow text-gray-500">
                             Bookings data will come here...
                         </div>
                     )}
 
-                    {activeSection === 'users' && (
+                    {/* {activeSection === 'users' && (
                         <div className="bg-white p-6 rounded-lg shadow text-gray-500">
-                            User list will come here...
+                            <Citizen/>
                         </div>
-                    )}
+                    )} */}
 
                     {activeSection === 'settings' && (
                         <div className="bg-white p-6 rounded-lg shadow text-gray-500">
