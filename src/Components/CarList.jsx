@@ -82,9 +82,37 @@ const CarList = ({ toggleCarStatus, openPopup }) => {
                             </div>
 
                             {/* Car Info */}
-                            <div className="p-5">
-                                <h3 className="text-xl font-semibold text-gray-900 truncate">{car.name}</h3>
-                                <p className="text-gray-600 text-sm mt-1">{car.model} - ₹{car.price}</p>
+                            <div className="">
+                            <div className="bg-white shadow-lg rounded-xl border border-gray-200 p-4">
+    {/* Car Name */}
+    {car.name && (
+        <h3 className="text-2xl font-bold text-gray-900 truncate">{car.name}</h3>
+    )}
+
+    {/* Car Model (Only Show If Exists) */}
+    {car.model && (
+        <p className="text-gray-700 text-sm mt-1 font-medium">Model: {car.model}</p>
+    )}
+
+    {/* Rent Price */}
+    {car.price && (
+        <p className="text-green-600 font-bold text-lg mt-2">
+            Rent Price: ₹{car.price}
+        </p>
+    )}
+
+    {/* Driver Name (Only Show If Exists) */}
+    {car.driverName && (
+        <div className="flex items-center gap-2 mt-3">
+            <span className="text-gray-600 text-sm font-medium">Driver:</span>
+            <h4 className="text-lg font-semibold text-red-500 truncate">
+                {car.driverName}
+            </h4>
+        </div>
+    )}
+</div>
+
+
 
                                 {/* Buttons */}
                                 <div className="mt-4 flex gap-1">

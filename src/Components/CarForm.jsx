@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Car, Tag, IndianRupee, Upload } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Car, Tag, IndianRupee, Upload, User } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // Make sure toastify is installed
 import 'react-toastify/dist/ReactToastify.css';
 import { API } from '../Apis/api';
-
-
-
+import Select from 'react-select';
 const CarForm = ({ addCar }) => {
+    const [driverOptions, setDriverOptions] = useState([]);
     const [car, setCar] = useState({
         name: '',
         type: '',
         price: '',
+        driverName: '',
         imageFile: null,
         imagePreview: '',
     });
@@ -34,7 +34,7 @@ const CarForm = ({ addCar }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!car.name || !car.type || !car.price || !car.imageFile) {
+        if (!car.name || !car.type || !car.price || !car.driverName || !car.imageFile) {
             toast.error('All fields are required!', { position: 'top-right' });
             return;
         }
@@ -45,6 +45,7 @@ const CarForm = ({ addCar }) => {
         formData.append('name', car.name);
         formData.append('model', car.model);
         formData.append('price', car.price);
+        formData.append('driverName', car.driverName);
         formData.append('image', car.imageFile);
 
         try {
@@ -60,16 +61,15 @@ const CarForm = ({ addCar }) => {
             if (response.status === 201) {
                 toast.success('Car added successfully!', { position: 'top-right' });
 
-                // Optionally update the parent component (if needed)
                 if (addCar) {
-                    addCar(response.data.car); // Adding newly created car to local list
+                    addCar(response.data.car);
                 }
 
-                // Clear the form
                 setCar({
                     name: '',
                     model: '',
                     price: '',
+                    driverName: '',
                     imageFile: null,
                     imagePreview: '',
                 });
@@ -84,6 +84,26 @@ const CarForm = ({ addCar }) => {
         }
     };
 
+    useEffect(() => {
+        const fetchDrivers = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get('http://localhost:5000/api/drivers/get-all-drivers-name');
+                if (response.status === 200) {
+                    const options = response.data.driverNames.map(driver => ({
+                        value: driver.name,
+                        label: driver.name
+                    }));
+                    setDriverOptions(options);
+                }
+            } catch (error) {
+                console.error('Error fetching drivers:', error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchDrivers();
+    }, []);
     return (
 <form
     onSubmit={handleSubmit}
@@ -140,6 +160,22 @@ const CarForm = ({ addCar }) => {
         />
     </div>
 
+    {/* Driver Name */}
+    <div className="space-y-2">
+            <label className="text-gray-600 font-medium flex items-center gap-2">
+                <User className="w-5 h-5 text-red-500" /> Driver Name
+            </label>
+            <Select
+                options={driverOptions}
+                isLoading={loading}
+                placeholder="Select a driver"
+                value={driverOptions.find(option => option.value === car.driverName)}
+                onChange={selectedOption => setCar({ ...car, driverName: selectedOption.value })}
+                className="w-full"
+            />
+        </div>
+
+
     {/* Image Upload or Preview */}
     <div className="space-y-2">
         <label className="text-gray-600 font-medium flex items-center gap-2">
@@ -155,7 +191,7 @@ const CarForm = ({ addCar }) => {
                 <button
                     type="button"
                     onClick={() => {
-                        setCar({ ...car, image: null, imagePreview: '' });
+                        setCar({ ...car, imageFile: null, imagePreview: '' });
                     }}
                     className="absolute inset-0 bg-black/50 text-white font-medium flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
                 >
@@ -181,8 +217,6 @@ const CarForm = ({ addCar }) => {
         {loading ? 'Adding...' : 'Add Car'}
     </button>
 </form>
-
-
     );
 };
 

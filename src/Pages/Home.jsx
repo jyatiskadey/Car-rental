@@ -3,6 +3,7 @@ import HeroSection from '../Components/HeroSection';
 import SearchBar from '../Components/SearchBar';
 import FeaturedProperties from '../Components/FeaturedProperties';
 import Footer from '../Components/Footer';
+import CarRentalComponents from '../Components/CarRentalComponents';
 
 function Home() {
     return (
@@ -11,6 +12,7 @@ function Home() {
             <HeroSection />
             <SearchBar />
             <FeaturedProperties />
+            <CarRentalComponents/>
             {/* <Footer /> */}
         </div>
     );

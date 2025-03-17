@@ -7,6 +7,7 @@ import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
 import { API } from '../Apis/api';
 import 'react-toastify/dist/ReactToastify.css';  
 import { toastHandler } from '../Components/Toast';
+import CarLoader from '../Components/Loader';
 
 export default function Cars() {
     const [cars, setCars] = useState([]);
@@ -103,7 +104,7 @@ React.useEffect(() => {
             <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">Available Cars</h1>
 
             {loading ? (
-                <p className="text-center text-xl">Loading cars...</p>
+                <CarLoader/>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     {cars.map((car) => (
@@ -144,7 +145,7 @@ React.useEffect(() => {
                         {popupType === "details" && (
                             <div>
                                 <h2 className="text-3xl font-bold text-gray-800 mb-4">Car Details</h2>
-                                <img src={selectedCar.image} alt={selectedCar.name} className="w-full h-52 object-cover rounded-lg" />
+                                <img src={selectedCar.imageUrl} alt={selectedCar.name} className="w-full h-52 object-cover rounded-lg" />
                                 <h3 className="text-xl font-semibold mt-4">{selectedCar.name}</h3>
                                 <p className="text-gray-600">{selectedCar.price}</p>
                                 <p className="mt-4 text-sm text-gray-700">

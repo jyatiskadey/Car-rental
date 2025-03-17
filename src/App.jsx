@@ -9,6 +9,7 @@ import CitizenDashboard from './Pages/Citizen/CItizenDashboard';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
 import AdminLogin from './Pages/Admin/Login';
 import CarList from './Components/CarList';
+// import CarBooking from './Pages/CarBooking';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/citizen/dashboard" element={<CitizenDashboard />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 <Route path="/text" element={<CarList />} />
+                {/* <Route path="/cars-booking" element={<CarBooking />} /> */}
             </Routes>
         </Router>
     );
