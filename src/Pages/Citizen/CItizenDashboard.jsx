@@ -20,7 +20,7 @@ const CitizenDashboard = () => {
                 return;
             }
     
-            const response = await axios.get('http://localhost:5000/api/citizen/profile', {
+            const response = await axios.get('https://car-rental-new-backend-2.onrender.com/api/citizen/profile', {
                 headers: { Authorization: `Bearer ${token}` }
             });
     

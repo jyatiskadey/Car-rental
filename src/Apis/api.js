@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:5000/api";
-// const BASE_URL = "https://car-rental-new-backend.onrender.com/api";
+// const BASE_URL = "https://car-rental-new-backend-2.onrender.com/api";
+const BASE_URL = "https://car-rental-new-backend-2.onrender.com/api";
 // const BASE_URL = "car-rental-new-backend-fb0ydhgal-jyatiskadey-gmailcoms-projects.vercel.app";
 
 export const API = {

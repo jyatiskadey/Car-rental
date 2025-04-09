@@ -88,7 +88,7 @@ const CarForm = ({ addCar }) => {
         const fetchDrivers = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('http://localhost:5000/api/drivers/get-all-drivers-name');
+                const response = await axios.get('https://car-rental-new-backend-2.onrender.com/api/drivers/get-all-drivers-name');
                 if (response.status === 200) {
                     const options = response.data.driverNames.map(driver => ({
                         value: driver.name,

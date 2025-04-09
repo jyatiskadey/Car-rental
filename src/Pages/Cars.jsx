@@ -86,7 +86,7 @@ React.useEffect(() => {
         };
     
         try {
-            const response = await axios.post('http://localhost:5000/api/bookings/create', bookingData);
+            const response = await axios.post('https://car-rental-new-backend-2.onrender.com/api/bookings/create', bookingData);
             toastHandler(response);  // Automatically show toast based on message
             if (response?.data?.message === "Booking successful!") {
                 closePopup(); // close popup if booking was successful
